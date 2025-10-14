@@ -1,6 +1,23 @@
 const main = document.getElementById('main')
 let balance = document.getElementById("balance")
 
+const transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+let totalIncome=0
+let totalExpense=0
+let totalSavings=0
+transactions.forEach(tx => {
+  if (tx.type === "income") {
+    totalIncome += tx.amount;
+  } else if (tx.type === "expense") {
+    totalExpense += tx.amount;
+  } else if (tx.type === "savings") {
+    totalSavings += tx.amount;
+  }
+})
+
+const balanceAmount = totalIncome - totalExpense - totalSavings;
+
+balance.textContent=balanceAmount
 
 
 function renderDashboard(cardsSection, totalBalance, totalSpent, savingsPercentage, topSpendCategory) {
@@ -8,11 +25,11 @@ function renderDashboard(cardsSection, totalBalance, totalSpent, savingsPercenta
   const transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
 
-  if (transactions.length===0){
-    const heading=document.createElement("h1")
-    heading.style.textAlign="center"
-    heading.style.color="red"
-    heading.textContent="No Transactions Yet!!"
+  if (transactions.length === 0) {
+    const heading = document.createElement("h1")
+    heading.style.textAlign = "center"
+    heading.style.color = "red"
+    heading.textContent = "No Transactions Yet!!"
     cardsSection.appendChild(heading)
     return
   }
