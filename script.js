@@ -10,8 +10,8 @@ function renderDashboard(cardsSection, totalBalance, totalSpent, savingsPercenta
 
   if (transactions.length===0){
     const heading=document.createElement("h1")
-    heading.style.textAlign="center"
-    heading.style.color=''
+    heading.style.textAlign=center
+    heading.style.color="red"
     heading.textContent="No Transactions Yet!!"
     cardsSection.appendChild(heading)
     return
