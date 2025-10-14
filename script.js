@@ -7,6 +7,16 @@ function renderDashboard(cardsSection, totalBalance, totalSpent, savingsPercenta
 
   const transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
+
+  if (transactions.length===0){
+    const heading=document.createElement("h1")
+    heading.style.textAlign="center"
+    heading.style.color=''
+    heading.textContent="No Transactions Yet!!"
+    cardsSection.appendChild(heading)
+    return
+  }
+
   // Separate income, expense, savings
   let totalIncome = 0;
   let totalExpense = 0;
