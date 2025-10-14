@@ -1,6 +1,6 @@
 const main = document.getElementById('main')
 let balance = document.getElementById("balance")
-balance.textContent = 100
+
 
 
 function renderDashboard(cardsSection, totalBalance, totalSpent, savingsPercentage, topSpendCategory) {
