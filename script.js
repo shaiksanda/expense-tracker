@@ -1,24 +1,29 @@
 const main = document.getElementById('main')
-let balance = document.getElementById("balance")
+function renderBalance() {
+  let balance = document.getElementById("balance")
 
-const transactions = JSON.parse(localStorage.getItem("transactions")) || [];
-let totalIncome=0
-let totalExpense=0
-let totalSavings=0
-transactions.forEach(tx => {
-  if (tx.type === "income") {
-    totalIncome += tx.amount;
-  } else if (tx.type === "expense") {
-    totalExpense += tx.amount;
-  } else if (tx.type === "savings") {
-    totalSavings += tx.amount;
-  }
-})
+  const transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+  let totalIncome = 0
+  let totalExpense = 0
+  let totalSavings = 0
+  transactions.forEach(tx => {
+    if (tx.type === "income") {
+      totalIncome += tx.amount;
+    } else if (tx.type === "expense") {
+      totalExpense += tx.amount;
+    } else if (tx.type === "savings") {
+      totalSavings += tx.amount;
+    }
+  })
 
-const balanceAmount = totalIncome - totalExpense - totalSavings;
+  const balanceAmount = totalIncome - totalExpense - totalSavings;
 
-balance.textContent=balanceAmount
+  balance.textContent = balanceAmount
 
+}
+
+
+renderBalance()
 
 function renderDashboard(cardsSection, totalBalance, totalSpent, savingsPercentage, topSpendCategory) {
 
@@ -205,6 +210,7 @@ function initExpenseForm() {
     localStorage.setItem('transactions', JSON.stringify(transactions))
 
     e.target.reset()
+    renderBalance()
     alert("Transaction Added")
 
   })
